@@ -1,13 +1,13 @@
 plugins {
-	kotlin("jvm") version "2.2.21"
-	kotlin("plugin.spring") version "2.2.21"
-	id("org.springframework.boot") version "4.0.1"
-	id("io.spring.dependency-management") version "1.1.7"
+	alias(libs.plugins.kotlin.jvm)
+	alias(libs.plugins.kotlin.plugin.spring)
+	alias(libs.plugins.spring.boot)
+	alias(libs.plugins.spring.dependency.management)
 }
 
 group = "dev.parcelview"
-version = "0.0.1-SNAPSHOT"
-description = "Demo project for Spring Boot"
+version = "0.0.1"
+description = "Backend for ParcelView in Spring Boot"
 
 java {
 	toolchain {
@@ -20,13 +20,22 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("tools.jackson.module:jackson-module-kotlin")
-	runtimeOnly("org.postgresql:postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	implementation(libs.spring.boot.starter)
+	implementation(libs.spring.boot.starter.web)
+	implementation(libs.kotlin.reflect)
+	runtimeOnly(libs.postgresql)
+	implementation(libs.spring.boot.starter.test)
+	implementation(libs.kotlin.test.junit5)
+
+	// Swagger docs
+	implementation(libs.springdoc.openapi.starter.webmvc.ui)
+
+	// Test
+	testRuntimeOnly(libs.junit.platform.launcher)
+	testImplementation(libs.spring.boot.starter.test) {
+		exclude(module = "mockito-core")
+	}
+	testImplementation(libs.google.truth)
 }
 
 kotlin {

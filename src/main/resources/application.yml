@@ -3,3 +3,10 @@ spring:
     name: parcelview
 server:
   port: 2320
+  servlet:
+    context-path: /api
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
