@@ -1,6 +1,9 @@
+import java.net.URI
+
 plugins {
 	alias(libs.plugins.kotlin.jvm)
 	alias(libs.plugins.kotlin.plugin.spring)
+	alias(libs.plugins.kotlin.serialization)
 	alias(libs.plugins.spring.boot)
 	alias(libs.plugins.spring.dependency.management)
 }
@@ -22,10 +25,15 @@ repositories {
 dependencies {
 	implementation(libs.spring.boot.starter)
 	implementation(libs.spring.boot.starter.web)
+	implementation(libs.spring.boot.starter.data.jdbc)
 	implementation(libs.kotlin.reflect)
 	runtimeOnly(libs.postgresql)
+	runtimeOnly("com.h2database:h2")
 	implementation(libs.spring.boot.starter.test)
 	implementation(libs.kotlin.test.junit5)
+	implementation(libs.kotlinx.serialization.json)
+	implementation(libs.kotlinx.coroutines.core)
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
 	// Swagger docs
 	implementation(libs.springdoc.openapi.starter.webmvc.ui)

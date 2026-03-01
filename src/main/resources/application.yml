@@ -1,6 +1,18 @@
 spring:
   application:
     name: parcelview
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/parcelview
+#    username: ${DB_USERNAME:parcelview}
+#    password: ${DB_PASSWORD:parcelview}
+  datasource:
+    url: jdbc:h2:mem:parcelview;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
 server:
   port: 2320
   servlet:
@@ -10,3 +22,7 @@ springdoc:
     enabled: true
   swagger-ui:
     enabled: true
+
+courier:
+  ontrac  :
+    base-url: https://webtrack.ontrac.com

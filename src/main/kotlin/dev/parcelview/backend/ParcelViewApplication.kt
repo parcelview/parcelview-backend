@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ParcelViewApplication
 
 fun main(args: Array<String>) {
-	runApplication<ParcelViewApplication>(*args)
+    runApplication<ParcelViewApplication>(*args)
 }
