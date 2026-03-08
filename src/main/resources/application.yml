@@ -1,13 +1,7 @@
 spring:
   application:
     name: parcelview
-  datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
   jpa:
-    show-sql: true
     properties:
       hibernate:
         format_sql: true
