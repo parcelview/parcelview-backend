@@ -1,0 +1,35 @@
+name: parcelview
+
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-parcelview}
+      POSTGRES_USER: ${POSTGRES_USER:-parcelview}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    image: ghcr.io/parcelview/parcelview-backend:latest
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${SERVER_PORT:-2320}:${SERVER_PORT:-2320}"
+    env_file:
+      - .env
+
+volumes:
+  pgdata:
+networks:
+  default:
+    name: ${COMPOSE_PROJECT_NAME}-network

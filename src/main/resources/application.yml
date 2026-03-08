@@ -1,20 +1,24 @@
 spring:
   application:
     name: parcelview
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/parcelview
-#    username: ${DB_USERNAME:parcelview}
-#    password: ${DB_PASSWORD:parcelview}
   datasource:
-    url: jdbc:h2:mem:parcelview;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
   sql:
     init:
       mode: always
 server:
-  port: 2320
+  port: ${SERVER_PORT:2320}
   servlet:
     context-path: /api
 springdoc:
@@ -24,5 +28,5 @@ springdoc:
     enabled: true
 
 courier:
-  ontrac  :
+  ontrac:
     base-url: https://webtrack.ontrac.com

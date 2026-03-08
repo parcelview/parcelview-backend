@@ -50,19 +50,22 @@ class OnTracCourierClient(
             statusDetail = response.events.first().eventLongDescription,
             estimatedDelivery = Instant.parse(response.utcExpectedDeliveryDateTime),
             lastLocation = response.events.firstOrNull()?.let { formatLocation(it.city, it.state) },
-            lastUpdated = Instant.now()
+            lastUpdated = Instant.now(),
         )
 
-        val events = response.events.map { event ->
-            TrackingEvent(
-                timestamp = Instant.parse(event.utcEventDateTime),
-                status = normaliseStatus(event.eventShortDescription),
-                description = event.eventLongDescription,
-                location = formatLocation(event.city, event.state).orEmpty()
+        response.events.forEach { event ->
+            info.events.add(
+                TrackingEvent(
+                    timestamp = Instant.parse(event.utcEventDateTime),
+                    status = normaliseStatus(event.eventShortDescription),
+                    description = event.eventLongDescription,
+                    location = formatLocation(event.city, event.state).orEmpty(),
+                    trackingInfo = info,
+                )
             )
         }
 
-        return info.copy(events = events)
+        return info
     }
 
     private fun formatLocation(city: String?, state: String?): String? =

@@ -25,15 +25,16 @@ repositories {
 dependencies {
 	implementation(libs.spring.boot.starter)
 	implementation(libs.spring.boot.starter.web)
-	implementation(libs.spring.boot.starter.data.jdbc)
+	implementation(libs.spring.boot.starter.data.jpa)
 	implementation(libs.kotlin.reflect)
 	runtimeOnly(libs.postgresql)
-	runtimeOnly("com.h2database:h2")
 	implementation(libs.spring.boot.starter.test)
 	implementation(libs.kotlin.test.junit5)
 	implementation(libs.kotlinx.serialization.json)
 	implementation(libs.kotlinx.coroutines.core)
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+
 
 	// Swagger docs
 	implementation(libs.springdoc.openapi.starter.webmvc.ui)

@@ -23,6 +23,8 @@ build/
 *.tar.gz
 *.rar
 
+!gradle/wrapper/gradle-wrapper.jar
+
 # IntelliJ
 *.iml
 .idea/
@@ -38,3 +40,5 @@ replay_pid*
 .kotlin/
 
 **.DS_STORE
+
+.env

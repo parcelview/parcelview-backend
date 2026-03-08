@@ -31,7 +31,7 @@ data class OnTracDTO(
         @SerialName("Reference1")
         val reference1: String,
         @SerialName("Reference2")
-        val reference2: String,
+        val reference2: String?,
         @SerialName("Reference3")
         val reference3: String?,
         @SerialName("ServiceCode")
@@ -53,7 +53,7 @@ data class OnTracDTO(
         @SerialName("UtcOrderPlaced")
         val utcOrderPlaced: String,
         @SerialName("VpodImageUrl")
-        val vpodImageUrl: String,
+        val vpodImageUrl: String?,
         @SerialName("Weight")
         val weight: Int,
         @SerialName("WeightUnits")
