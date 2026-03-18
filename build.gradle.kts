@@ -3,6 +3,7 @@ import java.net.URI
 plugins {
 	alias(libs.plugins.kotlin.jvm)
 	alias(libs.plugins.kotlin.plugin.spring)
+	alias(libs.plugins.kotlin.plugin.jpa)
 	alias(libs.plugins.kotlin.serialization)
 	alias(libs.plugins.spring.boot)
 	alias(libs.plugins.spring.dependency.management)

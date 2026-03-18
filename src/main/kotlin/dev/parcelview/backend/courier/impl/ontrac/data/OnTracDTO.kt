@@ -47,7 +47,7 @@ data class OnTracDTO(
         @SerialName("Tracking")
         val tracking: String,
         @SerialName("UtcDeliveryDateTime")
-        val utcDeliveryDateTime: String,
+        val utcDeliveryDateTime: String?,
         @SerialName("UtcExpectedDeliveryDateTime")
         val utcExpectedDeliveryDateTime: String,
         @SerialName("UtcOrderPlaced")

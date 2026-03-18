@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController
 class TrackingController(
     private val trackingService: TrackingService
 ) {
-
     @GetMapping("/{courier}/{trackingNumber}")
     @Operation(summary = "Get tracking info for a parcel from a specific courier")
     suspend fun getTracking(
@@ -25,14 +24,5 @@ class TrackingController(
     ): ResponseEntity<TrackingInfo> {
         val info = trackingService.getTracking(trackingNumber, courier)
         return ResponseEntity.ok(info)
-    }
-
-    @GetMapping("/{trackingNumber}")
-    @Operation(summary = "Get tracking info across all couriers for a tracking number")
-    suspend fun getTrackingAll(
-        @PathVariable trackingNumber: String
-    ): ResponseEntity<List<TrackingInfo>> {
-        val results = trackingService.getAllByCourier(trackingNumber)
-        return ResponseEntity.ok(results)
     }
 }
