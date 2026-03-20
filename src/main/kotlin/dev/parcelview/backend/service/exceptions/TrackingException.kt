@@ -2,8 +2,8 @@ package dev.parcelview.backend.service.exceptions
 
 sealed class TrackingException(message: String) : RuntimeException(message) {
 
-    data class TrackingNotFoundException(val trackingNumber: String) :
-        TrackingException("Tracking number $trackingNumber not found")
+    data class TrackingNotFoundException(val trackingNumber: String, val e: String? = null) :
+        TrackingException("Tracking number $trackingNumber not found\n$e")
 
     data class CourierNotFoundException(val courier: String, val supportedCouriers: Collection<String>) :
         TrackingException("Courier $courier is not supported. Supported couriers are: ${supportedCouriers.joinToString(", ")}")

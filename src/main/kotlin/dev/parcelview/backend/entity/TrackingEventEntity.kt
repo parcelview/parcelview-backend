@@ -1,5 +1,6 @@
 package dev.parcelview.backend.entity
 
+import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.CourierStatus
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -19,6 +20,8 @@ data class TrackingEvent(
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID? = null,
     val timestamp: Instant,
+    @Enumerated(EnumType.STRING)
+    val courier: Courier,
     @Enumerated(EnumType.STRING)
     val status: CourierStatus,
     val description: String? = null,
