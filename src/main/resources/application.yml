@@ -30,3 +30,9 @@ courier:
       token-url: https://apis.usps.com/oauth2/v3/token
       client-id: ${USPS_CLIENT_ID}
       client-secret: ${USPS_CLIENT_SECRET}
+  fedex:
+    base-url: https://apis.fedex.com
+    oauth:
+      token-url: https://apis.fedex.com/oauth/token
+      client-id: ${FEDEX_CLIENT_ID}
+      client-secret: ${FEDEX_CLIENT_SECRET}
