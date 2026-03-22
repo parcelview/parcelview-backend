@@ -44,7 +44,8 @@ class TrackingService(
 
     private fun getClient(courier: String): CourierClient =
         courierClientRegistry.getCourier(courier) ?: throw TrackingException.CourierNotFoundException(
-            courier, courierClientRegistry.supportedCouriers()
+            courier = courier,
+            supportedCouriers = courierClientRegistry.supportedCouriers()
         )
 
     private fun mergeEvents(

@@ -1,5 +1,3 @@
-import java.net.URI
-
 plugins {
 	alias(libs.plugins.kotlin.jvm)
 	alias(libs.plugins.kotlin.plugin.spring)
@@ -25,6 +23,7 @@ repositories {
 
 dependencies {
 	implementation(libs.spring.boot.starter)
+	implementation(libs.spring.boot.starter.actuator)
 	implementation(libs.spring.boot.starter.web)
 	implementation(libs.spring.boot.starter.data.jpa)
 	implementation(libs.kotlin.reflect)
@@ -46,6 +45,8 @@ dependencies {
 		exclude(module = "mockito-core")
 	}
 	testImplementation(libs.google.truth)
+	testImplementation(libs.mockk)
+	testImplementation(libs.kotlinx.coroutines.test)
 }
 
 kotlin {

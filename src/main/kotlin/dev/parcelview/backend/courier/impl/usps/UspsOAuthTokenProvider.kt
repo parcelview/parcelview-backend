@@ -3,6 +3,7 @@ package dev.parcelview.backend.courier.impl.usps
 import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.auth.BaseOAuthTokenProvider
 import dev.parcelview.backend.courier.auth.OAuthToken
+import dev.parcelview.backend.repository.OAuthTokenRepository
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.SerialName
@@ -17,10 +18,11 @@ import org.springframework.web.client.body
 @Component
 class UspsOAuthTokenProvider(
     private val restClient: RestClient,
+    tokenRepository: OAuthTokenRepository,
     @Value("\${courier.usps.oauth.token-url}") private val tokenUrl: String,
     @Value("\${courier.usps.oauth.client-id}") private val clientId: String,
     @Value("\${courier.usps.oauth.client-secret}") private val clientSecret: String,
-) : BaseOAuthTokenProvider() {
+) : BaseOAuthTokenProvider(tokenRepository) {
 
     override val courier: Courier = Courier.USPS
 

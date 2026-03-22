@@ -5,16 +5,14 @@ import dev.parcelview.backend.repository.OAuthTokenRepository
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 
-abstract class BaseOAuthTokenProvider : OAuthTokenProvider {
+abstract class BaseOAuthTokenProvider(
+    private val tokenRepository: OAuthTokenRepository
+) : OAuthTokenProvider {
 
     private val log = LoggerFactory.getLogger(javaClass)
     private val mutex = Mutex()
     private var cachedToken: OAuthToken? = null
-
-    @Autowired
-    private lateinit var tokenRepository: OAuthTokenRepository
 
     override suspend fun getToken(): OAuthToken {
         cachedToken?.let { if (!it.isExpired()) return it }
