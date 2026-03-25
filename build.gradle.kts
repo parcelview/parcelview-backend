@@ -22,6 +22,9 @@ repositories {
 }
 
 dependencies {
+
+	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
+
 	implementation(libs.spring.boot.starter)
 	implementation(libs.spring.boot.starter.actuator)
 	implementation(libs.spring.boot.starter.web)
