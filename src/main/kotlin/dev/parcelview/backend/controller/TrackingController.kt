@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("v1/tracking", produces = ["application/json"])
+@RequestMapping("/v1/tracking", produces = ["application/json"])
 @Tag(name = "Tracking", description = "Parcel tracking operations")
 class TrackingController(
     private val trackingService: TrackingService

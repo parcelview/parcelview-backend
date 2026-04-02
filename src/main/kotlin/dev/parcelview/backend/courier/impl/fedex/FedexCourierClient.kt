@@ -1,5 +1,6 @@
 package dev.parcelview.backend.courier.impl.fedex
 
+import dev.parcelview.backend.config.condition.ConditionalOnNonBlankProperties
 import dev.parcelview.backend.courier.AbstractCourierClient
 import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.CourierMapping.formatLocation
@@ -16,6 +17,10 @@ import org.springframework.web.client.RestClient
 import org.springframework.web.client.body
 
 @Component
+@ConditionalOnNonBlankProperties(
+    prefix = "courier.fedex",
+    name = ["base-url", "oauth.token-url", "oauth.client-id", "oauth.client-secret"]
+)
 class FedexCourierClient(
     private val restClient: RestClient,
     private val tokenProvider: FedexOAuthClientProvider,

@@ -1,5 +1,6 @@
 package dev.parcelview.backend.courier.impl.usps
 
+import dev.parcelview.backend.config.condition.ConditionalOnNonBlankProperties
 import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.auth.BaseOAuthTokenProvider
 import dev.parcelview.backend.courier.auth.OAuthToken
@@ -16,6 +17,10 @@ import org.springframework.web.client.RestClient
 import org.springframework.web.client.body
 
 @Component
+@ConditionalOnNonBlankProperties(
+    prefix = "courier.usps.oauth",
+    name = ["token-url", "client-id", "client-secret"]
+)
 class UspsOAuthTokenProvider(
     private val restClient: RestClient,
     tokenRepository: OAuthTokenRepository,

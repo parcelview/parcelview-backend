@@ -1,5 +1,6 @@
 package dev.parcelview.backend.courier.impl.ontrac
 
+import dev.parcelview.backend.config.condition.ConditionalOnNonBlankProperties
 import dev.parcelview.backend.courier.AbstractCourierClient
 import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.CourierMapping.formatLocation
@@ -15,6 +16,10 @@ import org.springframework.web.client.RestClient
 import org.springframework.web.client.body
 
 @Component
+@ConditionalOnNonBlankProperties(
+    prefix = "courier.ontrac",
+    name = ["base-url"],
+)
 class OnTracCourierClient(
     private val restClient: RestClient,
     @Value("\${courier.ontrac.base-url}") private val baseUrl: String,

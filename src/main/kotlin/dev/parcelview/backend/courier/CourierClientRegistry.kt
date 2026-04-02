@@ -1,5 +1,6 @@
 package dev.parcelview.backend.courier
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 /**
@@ -9,10 +10,13 @@ import org.springframework.stereotype.Component
  * and indexed by their [CourierClient.courier] enum value.
  */
 @Component
-class CourierClientRegistry(courierClients: List<CourierClient>) {
+class CourierClientRegistry(
+    @Autowired(required = false)
+    courierClients: List<CourierClient>? = null,
+) {
 
     private val registry: Map<String, CourierClient> =
-        courierClients.associateBy { it.courier.value.lowercase() }
+        courierClients.orEmpty().associateBy { it.courier.value.lowercase() }
 
     /** Returns the registry entry for [courier], or `null` if unsupported. */
     fun getCourier(courier: String): CourierClient? =
