@@ -1,0 +1,16 @@
+[versions]
+kotlinx-coroutines = "1.10.2"
+postgresql = "42.7.10"
+springdoc-openapi = "3.0.2"
+truth = "1.4.5"
+mockk = "1.14.9"
+
+[libraries]
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi" }
+
+# Testing
+google-truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }

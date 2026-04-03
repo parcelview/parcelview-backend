@@ -18,6 +18,7 @@ import java.util.UUID
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Instant
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
@@ -40,7 +41,7 @@ class TrackingServiceTest {
 
     private fun makeEvent(
         id: UUID? = UUID.randomUUID(),
-        timestamp: kotlin.time.Instant = now,
+        timestamp: Instant = now,
         status: CourierStatus = CourierStatus.IN_TRANSIT,
         eventCode: String = "CODE1",
     ) = TrackingEvent(
@@ -54,7 +55,7 @@ class TrackingServiceTest {
     private fun makeTrackingInfo(
         id: UUID? = UUID.randomUUID(),
         status: CourierStatus = CourierStatus.IN_TRANSIT,
-        lastUpdated: kotlin.time.Instant = now,
+        lastUpdated: Instant = now,
         events: MutableSet<TrackingEvent> = mutableSetOf(),
     ) = TrackingInfo(
         id = id,

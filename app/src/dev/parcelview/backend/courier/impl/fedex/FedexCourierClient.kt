@@ -40,8 +40,8 @@ class FedexCourierClient(
             .body<FedexDTO>()
     }
 
-    override fun mapResponse(response: FedexDTO): TrackingInfo {
-        val result = response.output.completeTrackResults.first()
+    override fun mapResponse(dto: FedexDTO): TrackingInfo {
+        val result = dto.output.completeTrackResults.first()
         val track = result.trackResults.first()
 
         val info = TrackingInfo(

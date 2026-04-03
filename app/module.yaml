@@ -1,0 +1,28 @@
+product: jvm/app
+
+settings:
+  springBoot: enabled
+  kotlin:
+    serialization: json
+    freeCompilerArgs: [ -Xannotation-default-target=param-property ]
+  jvm:
+    mainClass: dev.parcelview.backend.ParcelViewApplicationKt
+    jdk:
+      version: 21
+
+dependencies:
+  - $kotlin.reflect
+  - $libs.kotlinx.coroutines.core
+  - $libs.postgresql: runtime-only
+  - $libs.springdoc.openapi.starter.webmvc.ui
+  - $spring.boot.devtools: runtime-only
+  - $spring.boot.docker.compose: runtime-only
+  - $spring.boot.starter
+  - $spring.boot.starter.data.jpa
+  - $spring.boot.starter.web
+
+test-dependencies:
+  - $spring.boot.starter.test
+  - $libs.mockk
+  - $libs.google.truth
+  - $libs.kotlinx.coroutines.test

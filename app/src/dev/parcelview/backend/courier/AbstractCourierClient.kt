@@ -7,7 +7,7 @@ import java.io.IOException
 abstract class AbstractCourierClient<R: Any> : CourierClient {
     protected abstract suspend fun fetchTrackingInfo(trackingNumber: String): R?
 
-    protected abstract fun mapResponse(response: R): TrackingInfo
+    protected abstract fun mapResponse(dto: R): TrackingInfo
 
     override suspend fun fetchTracking(trackingNumber: String): TrackingInfo {
         val response = try {

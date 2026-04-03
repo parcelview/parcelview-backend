@@ -1,24 +1,23 @@
 # ---------- Build Stage ----------
 FROM eclipse-temurin:21-jdk AS build
 
-WORKDIR /app
+WORKDIR /code
 
-COPY gradlew gradlew.bat settings.gradle.kts build.gradle.kts ./
-COPY gradle/ gradle/
+COPY amper amper.bat project.yaml libs.versions.toml ./
+RUN chmod +x amper
 
-RUN ./gradlew dependencies --no-daemon
+COPY  app/ ./app/
 
-COPY src/ src/
-RUN ./gradlew bootJar --no-daemon -x test
+RUN ./amper package
 
 # ---------- Runtime Stage ----------
 FROM eclipse-temurin:21-jre
 
 RUN apt-get update && apt-get install -y curl jq && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR /code
 
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build /code/build/tasks/_app_executableJarJvm/*.jar app.jar
 
 ARG SERVER_PORT=2320
 EXPOSE ${SERVER_PORT}
