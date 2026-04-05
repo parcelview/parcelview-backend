@@ -1,0 +1,13 @@
+product: jvm/lib
+
+settings:
+  springBoot: enabled
+
+dependencies:
+  - $libs.springdoc.openapi.starter.webmvc.ui
+  - $spring.boot.devtools: runtime-only
+  - $spring.boot.starter.actuator
+  - $spring.boot.starter.web
+
+plugins:
+  spring-build-info: enabled

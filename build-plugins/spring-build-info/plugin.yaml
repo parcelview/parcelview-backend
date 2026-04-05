@@ -1,0 +1,10 @@
+tasks:
+  generateBuildInfo:
+    action: !dev.parcelview.buildplugins.generateBuildInfo
+      appName: ${pluginSettings.name}
+      appVersion: ${pluginSettings.version}
+      projectRootDir: ${module.rootDir}
+      outputDir: ${taskOutputDir}
+    markOutputsAs:
+      - path: ${action.outputDir}
+        kind: jvm-resources

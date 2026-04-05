@@ -11,6 +11,7 @@ settings:
       version: 21
 
 dependencies:
+  - ../modules/status
   - $kotlin.reflect
   - $libs.kotlinx.coroutines.core
   - $libs.postgresql: runtime-only

@@ -1,2 +1,7 @@
 modules:
-  - ./app
+  - app
+  - modules/*
+  - build-plugins/spring-build-info
+
+plugins:
+  - ./build-plugins/spring-build-info

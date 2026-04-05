@@ -7,6 +7,8 @@ COPY amper amper.bat project.yaml libs.versions.toml ./
 RUN chmod +x amper
 
 COPY  app/ ./app/
+COPY modules/ ./modules/
+COPY build-plugins/ ./build-plugins/
 
 RUN ./amper package
 
