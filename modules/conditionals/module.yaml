@@ -1,0 +1,7 @@
+product: jvm/lib
+
+dependencies:
+  - $spring.boot.starter
+
+settings:
+  springBoot: enabled

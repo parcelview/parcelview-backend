@@ -12,6 +12,7 @@ settings:
 
 dependencies:
   - ../modules/status
+  - ../modules/conditionals
   - $kotlin.reflect
   - $libs.kotlinx.coroutines.core
   - $libs.postgresql: runtime-only

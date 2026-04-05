@@ -1,10 +1,10 @@
 package dev.parcelview.backend.courier.impl.fedex
 
-import dev.parcelview.backend.config.condition.ConditionalOnNonBlankProperties
 import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.auth.BaseOAuthTokenProvider
 import dev.parcelview.backend.courier.auth.OAuthToken
 import dev.parcelview.backend.repository.OAuthTokenRepository
+import dev.parcelview.conditionals.ConditionalOnNonBlankProperties
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.SerialName
