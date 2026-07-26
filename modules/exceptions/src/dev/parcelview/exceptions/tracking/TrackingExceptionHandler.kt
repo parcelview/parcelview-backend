@@ -1,4 +1,4 @@
-package dev.parcelview.backend.service.exceptions
+package dev.parcelview.exceptions.tracking
 
 import kotlin.time.Clock
 import kotlin.time.Instant

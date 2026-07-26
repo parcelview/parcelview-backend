@@ -1,4 +1,4 @@
-package dev.parcelview.backend.service.exceptions
+package dev.parcelview.exceptions.tracking
 
 sealed class TrackingException(message: String) : RuntimeException(message) {
 

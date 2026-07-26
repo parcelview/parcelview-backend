@@ -1,4 +1,4 @@
-package dev.parcelview.backend.config.condition
+package dev.parcelview.conditionals
 
 import org.springframework.context.annotation.Conditional
 

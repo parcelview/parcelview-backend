@@ -1,4 +1,4 @@
-package dev.parcelview.status
+package dev.parcelview.status.data
 
 data class StatusResponse(
     val status: String,

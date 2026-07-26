@@ -1,6 +1,6 @@
 package dev.parcelview.backend.courier.impl.ontrac
 
-import dev.parcelview.backend.config.condition.ConditionalOnNonBlankProperties
+import dev.parcelview.conditionals.ConditionalOnNonBlankProperties
 import dev.parcelview.backend.courier.AbstractCourierClient
 import dev.parcelview.backend.courier.Courier
 import dev.parcelview.backend.courier.CourierMapping.formatLocation

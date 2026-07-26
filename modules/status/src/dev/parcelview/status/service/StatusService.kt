@@ -1,5 +1,6 @@
-package dev.parcelview.status
+package dev.parcelview.status.service
 
+import dev.parcelview.status.data.StatusResponse
 import org.springframework.boot.actuate.info.InfoEndpoint
 import org.springframework.boot.health.actuate.endpoint.HealthEndpoint
 import org.springframework.boot.health.actuate.endpoint.SystemHealthDescriptor

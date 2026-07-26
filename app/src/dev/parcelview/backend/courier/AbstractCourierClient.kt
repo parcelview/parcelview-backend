@@ -1,7 +1,7 @@
 package dev.parcelview.backend.courier
 
 import dev.parcelview.backend.entity.TrackingInfo
-import dev.parcelview.backend.service.exceptions.TrackingException
+import dev.parcelview.exceptions.tracking.TrackingException
 import java.io.IOException
 
 abstract class AbstractCourierClient<R: Any> : CourierClient {

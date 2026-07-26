@@ -6,7 +6,7 @@ import dev.parcelview.backend.courier.CourierStatus
 import dev.parcelview.backend.entity.TrackingEvent
 import dev.parcelview.backend.entity.TrackingInfo
 import dev.parcelview.backend.repository.TrackingInfoRepository
-import dev.parcelview.backend.service.exceptions.TrackingException
+import dev.parcelview.exceptions.tracking.TrackingException
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.hours
 import kotlinx.coroutines.Dispatchers

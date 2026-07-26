@@ -1,4 +1,4 @@
-package dev.parcelview.status
+package dev.parcelview.status.data
 
 import org.springframework.boot.health.contributor.Health
 import org.springframework.boot.health.contributor.HealthIndicator

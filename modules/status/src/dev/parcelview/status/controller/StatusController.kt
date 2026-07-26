@@ -1,5 +1,7 @@
-package dev.parcelview.status
+package dev.parcelview.status.controller
 
+import dev.parcelview.status.data.StatusResponse
+import dev.parcelview.status.service.StatusService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
@@ -23,7 +25,10 @@ class StatusController(
             ApiResponse(
                 responseCode = "200",
                 description = "Service is healthy",
-                content = [Content(mediaType = "application/json", schema = Schema(implementation = StatusResponse::class))]
+                content = [Content(
+                    mediaType = "application/json",
+                    schema = Schema(implementation = StatusResponse::class)
+                )]
             ),
             ApiResponse(responseCode = "503", description = "Service is unhealthy"),
         ]
