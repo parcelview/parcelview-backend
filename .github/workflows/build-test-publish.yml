@@ -25,19 +25,19 @@ jobs:
           java-version: '21'
           distribution: 'jetbrains'
 
-      - name: Cache Amper
+      - name: Cache Kotlin Toolchain
         uses: actions/cache@v5
         with:
-          path: ~/.cache/JetBrains/Amper
-          key: ${{ runner.os }}-amper-${{ hashFiles('amper', '**/module.yaml', '**/project.yaml') }}
+          path: ~/.cache/JetBrains/Kotlin
+          key: ${{ runner.os }}-ktc-${{ hashFiles('amper', '**/module.yaml', '**/project.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-amper-
+            ${{ runner.os }}-ktc-
 
       - name: Build
-        run: ./amper build
+        run: ./kotlin build
 
       - name: Test
-        run: ./amper test
+        run: ./kotlin test
 
   publish:
     name: Publish Container Image

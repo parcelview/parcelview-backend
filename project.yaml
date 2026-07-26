@@ -1,7 +1,7 @@
 modules:
   - app
+  - build-plugins/spring-build-info
   - modules/*
-  - build-plugins/*
 
 plugins:
   - ./build-plugins/spring-build-info
