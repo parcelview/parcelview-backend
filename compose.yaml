@@ -20,7 +20,10 @@ services:
 
   app:
     image: ghcr.io/parcelview/parcelview-backend:latest
-    build: .
+    build:
+      context: .
+      # Set APP_DOCKERFILE=Dockerfile.bws in .env to build the Bitwarden Secrets Manager image.
+      dockerfile: ${APP_DOCKERFILE:-Dockerfile}
     depends_on:
       db:
         condition: service_healthy

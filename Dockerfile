@@ -26,4 +26,6 @@ EXPOSE ${SERVER_PORT}
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
     CMD curl -s http://localhost:${SERVER_PORT}/api/v1/status | jq -e '.status == "UP"' > /dev/null || exit 1
 
+# Standard setup: courier credentials (e.g. FEDEX_CLIENT_ID, USPS_CLIENT_ID) must be
+# supplied as environment variables, e.g. via compose.yaml's `env_file`.
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

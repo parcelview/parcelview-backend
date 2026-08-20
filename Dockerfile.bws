@@ -1,0 +1,57 @@
+FROM eclipse-temurin:21-jdk AS build
+
+WORKDIR /code
+
+COPY kotlin kotlin.bat project.yaml libs.versions.toml ./
+RUN chmod +x kotlin
+
+COPY app/ ./app/
+COPY modules/ ./modules/
+COPY build-plugins/ ./build-plugins/
+
+RUN ./kotlin package
+
+# ---------- bws Download Stage ----------
+FROM alpine:3.20 AS bws-download
+
+ARG BWS_VERSION=2.1.0
+ARG TARGETARCH
+RUN apk add --no-cache curl unzip
+
+RUN set -eux; \
+    case "$TARGETARCH" in \
+      amd64) BWS_ARCH=x86_64 ;; \
+      arm64) BWS_ARCH=aarch64 ;; \
+      *) echo "unsupported arch: $TARGETARCH" >&2; exit 1 ;; \
+    esac; \
+    BASE_URL="https://github.com/bitwarden/sdk-sm/releases/download/bws-v${BWS_VERSION}"; \
+    ZIP="bws-${BWS_ARCH}-unknown-linux-musl-${BWS_VERSION}.zip"; \
+    curl -sSLO "${BASE_URL}/${ZIP}"; \
+    curl -sSLO "${BASE_URL}/bws-sha256-checksums-${BWS_VERSION}.txt"; \
+    grep " ${ZIP}\$" "bws-sha256-checksums-${BWS_VERSION}.txt" | sha256sum -c -; \
+    unzip -o "$ZIP" -d /out
+
+# ---------- Runtime Stage ----------
+FROM eclipse-temurin:21-jre-alpine
+
+RUN apk add --no-cache curl jq && adduser -D --no-create-home parcelview
+
+COPY --from=bws-download /out/bws /usr/local/bin/bws
+RUN chmod +x /usr/local/bin/bws
+
+COPY --chown=parcelview:parcelview --from=build /code/build/tasks/_app_executableJarJvm/*.jar /app/app.jar
+COPY --chown=parcelview:parcelview docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
+
+USER parcelview
+
+ARG SERVER_PORT=2320
+EXPOSE ${SERVER_PORT}
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+    CMD curl -s http://localhost:${SERVER_PORT}/api/v1/status | jq -e '.status == "UP"' > /dev/null || exit 1
+
+# Bitwarden route: `bws run` fetches secrets at container start and injects them as env
+# vars for the `java` process only. Requires BWS_ACCESS_TOKEN at runtime (BWS_PROJECT_ID is
+# optional and passed through if set).
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
